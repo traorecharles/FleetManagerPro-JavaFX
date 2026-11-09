@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+<StackPane xmlns="http://javafx.com/javafx/21"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.miage.fleet.controller.VehiculesController">
+
+    <ScrollPane fitToWidth="true" styleClass="scroll-pane"
+                style="-fx-background-color: #f8fafc;">
+
+        <VBox spacing="20" styleClass="main-content" style="-fx-background-color: #f8fafc;">
+
+            <!-- Header -->
+            <HBox alignment="CENTER_LEFT">
+                <VBox HBox.hgrow="ALWAYS" spacing="4">
+                    <Label text="Véhicules" styleClass="page-title"/>
+                    <Label fx:id="vehicleCountLabel" text="6 véhicules — inventaire du parc" styleClass="page-subtitle"/>
+                </VBox>
+                <Button text="+ Nouveau véhicule" styleClass="btn-primary" onAction="#showNewVehicleForm"/>
+            </HBox>
+
+            <!-- Filters card -->
+            <VBox styleClass="filter-card" spacing="12">
+                <HBox spacing="12" alignment="CENTER_LEFT">
+                    <HBox styleClass="input-with-icon" spacing="8" alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
+                        <Label text="🔍" style="-fx-text-fill: #94a3b8; -fx-font-size: 13px;"/>
+                        <TextField fx:id="searchField"
+                                   styleClass="input-search"
+                                   promptText="Rechercher par marque, immatriculation, n° inventaire..."
+                                   HBox.hgrow="ALWAYS"
+                                   onKeyReleased="#applyFilters"/>
+                    </HBox>
+                    <!-- View toggle -->
+                    <HBox styleClass="view-toggle-box" spacing="2">
+                        <Button fx:id="listViewBtn" text="☰" styleClass="view-btn-active" onAction="#switchToList"/>
+                        <Button fx:id="gridViewBtn" text="⊞" styleClass="view-btn" onAction="#switchToGrid"/>
+                    </HBox>
+                </HBox>
+
+                <!-- Status + dept filters -->
+                <HBox spacing="8" alignment="CENTER_LEFT">
+                    <Label text="Statut :" style="-fx-text-fill: #94a3b8; -fx-font-size: 12px;"/>
+                    <HBox fx:id="statusFilters" spacing="6"/>
+                    <Label text="|" style="-fx-text-fill: #cbd5e1;"/>
+                    <Label text="Dép. :" style="-fx-text-fill: #94a3b8; -fx-font-size: 12px;"/>
+                    <HBox fx:id="deptFilters" spacing="6"/>
+                </HBox>
+            </VBox>
+
+            <!-- Content area: table + detail panel side by side -->
+            <HBox fx:id="contentRow" spacing="16" alignment="TOP_LEFT">
+                <!-- Vehicle list/grid -->
+                <VBox fx:id="tableContainer" HBox.hgrow="ALWAYS" spacing="0"/>
+                <!-- Detail panel -->
+                <VBox fx:id="detailPanel" styleClass="detail-panel" spacing="0"
+                      visible="false" managed="false"/>
+            </HBox>
+
+        </VBox>
+
+    </ScrollPane>
+
+    <!-- Modal overlay -->
+    <StackPane fx:id="modalOverlay"
+               style="-fx-background-color: rgba(0,0,0,0.45);"
+               visible="false" managed="false"
+               onMouseClicked="#closeModal"/>
+
+</StackPane>

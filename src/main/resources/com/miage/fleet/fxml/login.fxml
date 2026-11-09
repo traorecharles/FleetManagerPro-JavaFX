@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<StackPane xmlns="http://javafx.com/javafx/21"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.miage.fleet.controller.LoginController"
+           styleClass="login-root"
+           minWidth="900" minHeight="600">
+
+    <!-- Background blobs -->
+    <StackPane mouseTransparent="true">
+        <Region styleClass="login-blob-tl"
+                maxWidth="288" maxHeight="288"
+                StackPane.alignment="TOP_LEFT">
+            <StackPane.margin><Insets top="80.0" left="80.0"/></StackPane.margin>
+        </Region>
+        <Region styleClass="login-blob-br"
+                maxWidth="384" maxHeight="384"
+                StackPane.alignment="BOTTOM_RIGHT">
+            <StackPane.margin><Insets bottom="80.0" right="80.0"/></StackPane.margin>
+        </Region>
+    </StackPane>
+
+    <!-- Content -->
+    <VBox alignment="CENTER" spacing="0" maxWidth="440">
+
+        <!-- Logo + App title -->
+        <VBox alignment="CENTER" spacing="12">
+            <VBox.margin><Insets bottom="32.0"/></VBox.margin>
+            <StackPane alignment="CENTER" fx:id="logoBox" styleClass="login-logo-box">
+                <Label text="🚗" style="-fx-font-size: 28px;"/>
+            </StackPane>
+            <VBox alignment="CENTER" spacing="4">
+                <Label text="FleetManager Pro" styleClass="login-title"/>
+                <Label text="Gestion du Parc Automobile d'Entreprise" styleClass="login-subtitle"/>
+            </VBox>
+        </VBox>
+
+        <!-- Card -->
+        <VBox styleClass="login-card" spacing="0">
+
+            <Label text="Connexion" styleClass="login-card-title">
+                <VBox.margin><Insets bottom="4.0"/></VBox.margin>
+            </Label>
+            <Label text="Accédez à votre espace de gestion" styleClass="login-card-subtitle">
+                <VBox.margin><Insets bottom="24.0"/></VBox.margin>
+            </Label>
+
+            <!-- Email field -->
+            <VBox spacing="6">
+                <VBox.margin><Insets bottom="16.0"/></VBox.margin>
+                <Label text="Adresse email" styleClass="login-label"/>
+                <HBox styleClass="login-input-box" spacing="10" alignment="CENTER_LEFT">
+                    <Label text="✉" style="-fx-text-fill: #94a3b8; -fx-font-size: 14px;"/>
+                    <TextField fx:id="emailField"
+                               styleClass="login-input"
+                               promptText="votre.email@societe.ci"
+                               HBox.hgrow="ALWAYS"/>
+                </HBox>
+            </VBox>
+
+            <!-- Password field -->
+            <VBox spacing="6">
+                <VBox.margin><Insets bottom="16.0"/></VBox.margin>
+                <Label text="Mot de passe" styleClass="login-label"/>
+                <HBox fx:id="passwordBox" styleClass="login-input-box" spacing="10" alignment="CENTER_LEFT">
+                    <Label text="🔒" style="-fx-text-fill: #94a3b8; -fx-font-size: 14px;"/>
+                    <PasswordField fx:id="passwordField"
+                                  styleClass="login-input"
+                                  promptText="••••••••"
+                                  HBox.hgrow="ALWAYS"/>
+                    <Button fx:id="togglePwdBtn" text="👁" styleClass="modal-close-btn"
+                            onAction="#togglePasswordVisibility"/>
+                </HBox>
+            </VBox>
+
+            <!-- Error box -->
+            <HBox fx:id="errorBox" styleClass="login-error-box" spacing="8"
+                  alignment="CENTER_LEFT" managed="false" visible="false">
+                <VBox.margin><Insets bottom="16.0"/></VBox.margin>
+                <Label text="⚠" style="-fx-text-fill: #dc2626; -fx-font-size: 14px;"/>
+                <Label fx:id="errorLabel" styleClass="login-error-text" wrapText="true" HBox.hgrow="ALWAYS"/>
+            </HBox>
+
+            <!-- Login button -->
+            <Button fx:id="loginBtn"
+                    text="Se connecter"
+                    styleClass="login-btn"
+                    maxWidth="Infinity"
+                    onAction="#handleLogin">
+                <VBox.margin><Insets bottom="24.0"/></VBox.margin>
+            </Button>
+
+            <!-- Separator -->
+            <Separator>
+                <VBox.margin><Insets bottom="16.0"/></VBox.margin>
+            </Separator>
+
+            <!-- Demo credentials -->
+            <Label text="Comptes de démonstration"
+                   style="-fx-text-fill: #94a3b8; -fx-font-size: 11px; -fx-alignment: CENTER;"
+                   maxWidth="Infinity">
+                <VBox.margin><Insets bottom="12.0"/></VBox.margin>
+            </Label>
+
+            <VBox spacing="8">
+                <Button fx:id="adminDemoBtn"
+                        styleClass="demo-btn-admin"
+                        maxWidth="Infinity"
+                        onAction="#fillAdminCredentials">
+                    <graphic>
+                        <HBox alignment="CENTER_LEFT" spacing="0">
+                            <Label text="Administrateur" styleClass="demo-role-text" HBox.hgrow="ALWAYS"/>
+                            <Label text="i.kone@societe.ci" styleClass="demo-email-text"/>
+                        </HBox>
+                    </graphic>
+                </Button>
+                <Button fx:id="agentDemoBtn"
+                        styleClass="demo-btn-agent"
+                        maxWidth="Infinity"
+                        onAction="#fillAgentCredentials">
+                    <graphic>
+                        <HBox alignment="CENTER_LEFT" spacing="0">
+                            <Label text="Agent Logistique" styleClass="demo-role-text" HBox.hgrow="ALWAYS"/>
+                            <Label text="a.coulibaly@societe.ci" styleClass="demo-email-text"/>
+                        </HBox>
+                    </graphic>
+                </Button>
+            </VBox>
+
+        </VBox>
+
+        <!-- Footer -->
+        <Label text="© 2025 FleetManager Pro — Usage interne exclusivement"
+               styleClass="login-footer">
+            <VBox.margin><Insets top="24.0"/></VBox.margin>
+        </Label>
+    </VBox>
+
+</StackPane>

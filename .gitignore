@@ -1,0 +1,9 @@
+target/
+.idea/
+.claude/
+*.iml
+out/
+*.log
+run_output.txt
+.vscode/
+.DS_Store

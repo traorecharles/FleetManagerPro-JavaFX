@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+<ScrollPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.miage.fleet.controller.StatistiquesController"
+            fitToWidth="true" styleClass="scroll-pane" style="-fx-background-color: #f8fafc;">
+    <VBox spacing="20" styleClass="main-content" style="-fx-background-color: #f8fafc;">
+
+        <VBox spacing="4">
+            <Label text="Statistiques &amp; États" styleClass="page-title"/>
+            <Label text="Analyse et indicateurs de performance du parc" styleClass="page-subtitle"/>
+        </VBox>
+
+        <HBox spacing="16" fx:id="kpiRow"/>
+
+        <!-- Charts row 1: Line + Pie -->
+        <HBox spacing="16">
+            <VBox styleClass="card" HBox.hgrow="ALWAYS" spacing="4">
+                <Label text="Évolution des missions — 2025" styleClass="card-title"/>
+                <Label text="Ordres de mission par mois" styleClass="card-subtitle"/>
+                <StackPane fx:id="lineChartContainer" minHeight="240"/>
+            </VBox>
+            <VBox styleClass="card" minWidth="280" maxWidth="320" spacing="4">
+                <Label text="Répartition du parc" styleClass="card-title"/>
+                <Label text="Par statut" styleClass="card-subtitle"/>
+                <StackPane fx:id="pieContainer" minHeight="240"/>
+            </VBox>
+        </HBox>
+
+        <!-- Charts row 2: Dept missions + Vehicle KM -->
+        <HBox spacing="16">
+            <VBox styleClass="card" HBox.hgrow="ALWAYS" spacing="12">
+                <Label text="Missions par département" styleClass="card-title"/>
+                <Label text="Distribution des déplacements" styleClass="card-subtitle"/>
+                <VBox fx:id="deptBarsContainer" spacing="10"/>
+            </VBox>
+            <VBox styleClass="card" HBox.hgrow="ALWAYS" spacing="12">
+                <Label text="Kilométrage par véhicule" styleClass="card-title"/>
+                <Label text="Total parcouru" styleClass="card-subtitle"/>
+                <VBox fx:id="kmBarsContainer" spacing="10"/>
+            </VBox>
+        </HBox>
+
+        <!-- Bar chart row -->
+        <HBox spacing="16">
+            <VBox styleClass="card" HBox.hgrow="ALWAYS" spacing="4">
+                <Label text="Véhicules par département" styleClass="card-title"/>
+                <Label text="Inventaire par entité" styleClass="card-subtitle"/>
+                <StackPane fx:id="barChartContainer" minHeight="200"/>
+            </VBox>
+        </HBox>
+
+    </VBox>
+</ScrollPane>

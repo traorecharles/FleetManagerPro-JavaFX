@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+<StackPane xmlns="http://javafx.com/javafx/21"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.miage.fleet.controller.DocumentsController"
+           style="-fx-background-color: #f8fafc;">
+
+    <ScrollPane fitToWidth="true" styleClass="scroll-pane" style="-fx-background-color: #f8fafc;">
+        <VBox spacing="20" styleClass="main-content" style="-fx-background-color: #f8fafc;">
+
+            <!-- Header -->
+            <HBox alignment="CENTER_LEFT">
+                <VBox HBox.hgrow="ALWAYS" spacing="4">
+                    <Label text="Documents &amp; Assurances" styleClass="page-title"/>
+                    <Label text="Suivi des documents réglementaires du parc" styleClass="page-subtitle"/>
+                </VBox>
+                <Button text="↑ Importer un document" styleClass="btn-primary" onAction="#showImportModal"/>
+            </HBox>
+
+            <!-- Alert banner -->
+            <VBox fx:id="alertBanner" visible="false" managed="false"
+                  style="-fx-background-color: #fef2f2; -fx-background-radius: 12; -fx-border-color: #fecaca; -fx-border-radius: 12; -fx-border-width: 1; -fx-padding: 16;"/>
+
+            <!-- Summary cards -->
+            <HBox spacing="16" fx:id="summaryRow"/>
+
+            <!-- Filters -->
+            <VBox styleClass="filter-card" spacing="10">
+                <HBox spacing="12" alignment="CENTER_LEFT">
+                    <HBox styleClass="input-with-icon" spacing="8" alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
+                        <Label text="🔍" style="-fx-text-fill: #94a3b8; -fx-font-size: 13px;"/>
+                        <TextField fx:id="searchField" styleClass="input-search"
+                                   promptText="Rechercher par véhicule, immatriculation..."
+                                   HBox.hgrow="ALWAYS" onKeyReleased="#applyFilters"/>
+                    </HBox>
+                    <HBox fx:id="typeFilters" spacing="6"/>
+                </HBox>
+            </VBox>
+
+            <!-- Documents table -->
+            <VBox fx:id="docTableContainer" styleClass="card" style="-fx-padding: 0;"/>
+
+            <!-- Per-vehicle section -->
+            <Label text="Récapitulatif par véhicule"
+                   style="-fx-text-fill: #334155; -fx-font-size: 15px; -fx-font-weight: 600;"/>
+            <FlowPane fx:id="vehicleCardsContainer" hgap="16" vgap="16"/>
+
+        </VBox>
+    </ScrollPane>
+
+    <StackPane fx:id="modalOverlay" visible="false" managed="false"
+               style="-fx-background-color: rgba(0,0,0,0.5);"
+               onMouseClicked="#closeModal"/>
+
+</StackPane>

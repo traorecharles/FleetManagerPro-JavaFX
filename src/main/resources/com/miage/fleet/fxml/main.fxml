@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<HBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.miage.fleet.controller.MainController"
+      style="-fx-background-color: #f8fafc;"
+      prefWidth="1400" prefHeight="850">
+
+    <!-- ═══════════════════════════════════════
+         SIDEBAR
+    ═══════════════════════════════════════ -->
+    <VBox fx:id="sidebar" styleClass="sidebar">
+
+        <!-- Logo Section -->
+        <HBox styleClass="sidebar-logo-section" spacing="12" alignment="CENTER_LEFT">
+            <StackPane styleClass="sidebar-logo-box" alignment="CENTER">
+                <Label text="🚗" style="-fx-font-size: 17px;"/>
+            </StackPane>
+            <VBox spacing="2">
+                <Label text="FleetManager" styleClass="sidebar-app-name"/>
+                <Label text="Parc Automobile" styleClass="sidebar-app-sub"/>
+            </VBox>
+        </HBox>
+
+        <!-- Navigation -->
+        <VBox VBox.vgrow="ALWAYS" style="-fx-padding: 16 0;">
+            <Label text="NAVIGATION" styleClass="sidebar-section-label"
+                   style="-fx-padding: 0 12 8 12; -fx-text-fill: rgba(255,255,255,0.3); -fx-font-size: 10px; -fx-font-weight: bold;"/>
+
+            <VBox fx:id="navContainer" spacing="2" style="-fx-padding: 0 12;">
+                <!-- Nav items injected by controller -->
+            </VBox>
+
+            <!-- Admin section -->
+            <VBox fx:id="adminSection" spacing="2" style="-fx-padding: 20 12 0 12;" managed="false" visible="false">
+                <Label text="SYSTÈME"
+                       style="-fx-padding: 0 0 8 0; -fx-text-fill: rgba(255,255,255,0.3); -fx-font-size: 10px; -fx-font-weight: bold;"/>
+                <Button fx:id="adminNavBtn" text="  🛡  Administration"
+                        styleClass="nav-item"
+                        maxWidth="Infinity"
+                        onAction="#navigateToAdmin"/>
+            </VBox>
+        </VBox>
+
+        <!-- User section -->
+        <VBox styleClass="sidebar-user-section" spacing="8">
+            <!-- Role badge -->
+            <HBox fx:id="roleBadgeContainer" style="-fx-padding: 0 4;"/>
+
+            <!-- User info row -->
+            <HBox spacing="10" alignment="CENTER_LEFT" style="-fx-padding: 4 6; -fx-background-radius: 12; -fx-cursor: hand;">
+                <StackPane fx:id="headerAvatar" alignment="CENTER"
+                           style="-fx-min-width: 32; -fx-min-height: 32; -fx-max-width: 32; -fx-max-height: 32; -fx-background-radius: 16; -fx-background-color: linear-gradient(to bottom right, #60a5fa, #6366f1);">
+                    <Label fx:id="headerAvatarText" styleClass="avatar-text"/>
+                </StackPane>
+                <VBox HBox.hgrow="ALWAYS" spacing="1">
+                    <Label fx:id="sidebarUserName" styleClass="user-name-text"/>
+                    <Label fx:id="sidebarUserDept" styleClass="user-dept-text"/>
+                </VBox>
+                <Button text="⏻" styleClass="logout-btn" onAction="#handleLogout"
+                        style="-fx-font-size: 14px;"/>
+            </HBox>
+        </VBox>
+
+    </VBox>
+
+    <!-- ═══════════════════════════════════════
+         MAIN AREA
+    ═══════════════════════════════════════ -->
+    <VBox HBox.hgrow="ALWAYS" style="-fx-background-color: #f8fafc;">
+
+        <!-- TOP HEADER -->
+        <HBox styleClass="top-header" spacing="16" alignment="CENTER_LEFT">
+
+            <!-- Breadcrumb -->
+            <HBox spacing="6" alignment="CENTER_LEFT">
+                <Label text="FleetManager" styleClass="breadcrumb-fleet"/>
+                <Label text="›" styleClass="breadcrumb-separator"/>
+                <Label fx:id="breadcrumbCurrent" text="Tableau de bord" styleClass="breadcrumb-current"/>
+            </HBox>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <!-- Search bar -->
+            <HBox styleClass="search-box" spacing="8" alignment="CENTER_LEFT">
+                <Label text="🔍" style="-fx-text-fill: #94a3b8; -fx-font-size: 13px;"/>
+                <TextField styleClass="search-field"
+                           promptText="Rechercher..."
+                           prefWidth="200"/>
+            </HBox>
+
+            <!-- Notification bell -->
+            <StackPane>
+                <Button styleClass="notification-btn" text="🔔"/>
+                <Region style="-fx-background-color: #ef4444; -fx-background-radius: 4; -fx-min-width: 8; -fx-min-height: 8; -fx-max-width: 8; -fx-max-height: 8;"
+                        StackPane.alignment="TOP_RIGHT">
+                    <StackPane.margin><Insets top="6.0" right="6.0"/></StackPane.margin>
+                </Region>
+            </StackPane>
+
+            <!-- User avatar + name -->
+            <HBox styleClass="header-user-box" spacing="8" alignment="CENTER_LEFT">
+                <StackPane alignment="CENTER"
+                           style="-fx-min-width: 28; -fx-min-height: 28; -fx-max-width: 28; -fx-max-height: 28; -fx-background-radius: 14; -fx-background-color: linear-gradient(to bottom right, #60a5fa, #6366f1);">
+                    <Label fx:id="topbarAvatarText" style="-fx-text-fill: white; -fx-font-size: 10px; -fx-font-weight: bold;"/>
+                </StackPane>
+                <Label fx:id="topbarUserName" styleClass="header-username"/>
+                <Label text="⌄" style="-fx-text-fill: #94a3b8; -fx-font-size: 12px;"/>
+            </HBox>
+        </HBox>
+
+        <!-- CONTENT AREA -->
+        <StackPane fx:id="contentArea" VBox.vgrow="ALWAYS"
+                   style="-fx-background-color: #f8fafc;"/>
+
+    </VBox>
+
+</HBox>

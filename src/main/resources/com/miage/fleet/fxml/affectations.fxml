@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+<StackPane xmlns="http://javafx.com/javafx/21"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.miage.fleet.controller.AffectationsController"
+           style="-fx-background-color: #f8fafc;">
+
+    <!-- Main content -->
+    <ScrollPane fitToWidth="true" styleClass="scroll-pane" style="-fx-background-color: #f8fafc;">
+        <VBox spacing="20" styleClass="main-content" style="-fx-background-color: #f8fafc;">
+
+            <!-- Header -->
+            <HBox alignment="CENTER_LEFT">
+                <VBox HBox.hgrow="ALWAYS" spacing="4">
+                    <Label text="Affectations" styleClass="page-title"/>
+                    <Label text="Attribution des véhicules aux agents et départements" styleClass="page-subtitle"/>
+                </VBox>
+                <Button text="+ Nouvelle affectation" styleClass="btn-primary" onAction="#showNewAffectationForm"/>
+            </HBox>
+
+            <!-- Active affectations section -->
+            <VBox spacing="12">
+                <HBox alignment="CENTER_LEFT" spacing="8">
+                    <Region style="-fx-background-color: #10b981; -fx-background-radius: 4; -fx-min-width: 8; -fx-min-height: 8; -fx-max-width: 8; -fx-max-height: 8;"/>
+                    <Label fx:id="activeSectionTitle" text="Affectations actives (0)" styleClass="section-header-green"/>
+                </HBox>
+                <FlowPane fx:id="activeCardsContainer" hgap="16" vgap="16"/>
+            </VBox>
+
+            <!-- History section -->
+            <VBox spacing="12">
+                <HBox alignment="CENTER_LEFT" spacing="12">
+                    <HBox alignment="CENTER_LEFT" spacing="8">
+                        <Region style="-fx-background-color: #cbd5e1; -fx-background-radius: 4; -fx-min-width: 8; -fx-min-height: 8; -fx-max-width: 8; -fx-max-height: 8;"/>
+                        <Label text="Historique des affectations" styleClass="section-header-green"/>
+                    </HBox>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <HBox styleClass="input-with-icon" spacing="8" alignment="CENTER_LEFT" maxWidth="220">
+                        <Label text="🔍" style="-fx-text-fill: #94a3b8; -fx-font-size: 12px;"/>
+                        <TextField fx:id="searchField" styleClass="input-search"
+                                   promptText="Rechercher..."
+                                   HBox.hgrow="ALWAYS"
+                                   onKeyReleased="#applyFilters"
+                                   prefWidth="160"/>
+                    </HBox>
+                </HBox>
+                <VBox fx:id="historyTableContainer"/>
+            </VBox>
+
+        </VBox>
+    </ScrollPane>
+
+    <!-- Modal overlay -->
+    <StackPane fx:id="modalOverlay" visible="false" managed="false"
+               style="-fx-background-color: rgba(0,0,0,0.5);"
+               onMouseClicked="#closeModal"/>
+
+</StackPane>
